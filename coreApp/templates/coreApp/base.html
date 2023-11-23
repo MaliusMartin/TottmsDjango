@@ -1,0 +1,29 @@
+{% load static %}
+{% load django_browser_reload %}
+<!Doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+
+    <title>TOTTMS</title>
+
+    <style>
+        .body{
+            background-color: #A2F67A;
+        }
+
+    </style>
+</head>
+<body class='body'>
+    {% comment %} <p>Hello Tottms</p> {% endcomment %}
+    {% block content %}{% endblock %}
+    
+
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    {% django_browser_reload_script %}
+</body>
+</html>

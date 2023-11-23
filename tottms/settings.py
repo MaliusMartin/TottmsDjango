@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+from decouple import config
+import pymysql
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_8@at8u!kfl^j%q(wj(y9wsao_wg4cw&=ch74jf1rd_1^qtia*'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,6 +35,15 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    #Added apps
+    'coreApp',
+    'userApp',
+    'locationApp',
+    'django_browser_reload',
+    'whitenoise.runserver_nostatic',
+    'bootstrap5',
+    
+    #Genuine apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +53,10 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    #Added middleware
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    
+    #Genuine middleware
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -47,8 +64,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    #Added middleware
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
+# if DEBUG:
+#     INTERNAL_IPS = ['127.0.0.1']
+    
+    
 ROOT_URLCONF = 'tottms.urls'
 
 TEMPLATES = [
@@ -73,12 +97,33 @@ WSGI_APPLICATION = 'tottms.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+# pymysql.install_as_MySQLdb()
+
+pymysql.install_as_MySQLdb()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    },
+    'mysql': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'djangotottms',
+        'USER': 'root',
+        'PASSWORD': config('PASSWORD'),
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    },
 }
+
+# ...
+
+
 
 
 # Password validation
@@ -115,9 +160,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_URL = '/media/'
+
+STATIC_URL = 'static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_DIRS = (str(BASE_DIR.joinpath('static')),)
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  
+
