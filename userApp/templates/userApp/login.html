@@ -1,0 +1,59 @@
+{% extends "coreApp/base.html" %}
+
+{% comment %} {% block content %}
+<div class="container p-5 my-5 border">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center bg-dark text-white">
+                    <h1>Login to TOTTMS</h1>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form }}
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} {% endcomment %}
+
+{% block content%}
+<div class="container p-5 my-5 border">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h1>Login to TOTTMS</h1>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="checkNumber" class="form-label">Check Number</label>
+                            <input type="text" class="form-control" id="checkNumber" placeholder="Enter check number">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter password">
+                        </div>
+
+                        <div class="mb-3">
+                            <span class="text-muted">Don't have an account? </span>
+                            <a href="/signup" class="text-decoration-none">Sign up</a> |
+                            <span class="text-muted">Forgot password? </span>
+                            <a href="/reset-password" class="text-decoration-none">Reset password</a>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock%}

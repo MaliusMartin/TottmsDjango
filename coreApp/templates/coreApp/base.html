@@ -13,14 +13,22 @@
 
     <style>
         .body{
+            {% comment %} background-image: url("{% static 'images/Transfers.jpg' %}"); {% endcomment %}
             background-color: #A2F67A;
+            font family: "Times New Roman";
         }
 
     </style>
 </head>
 <body class='body'>
-    {% comment %} <p>Hello Tottms</p> {% endcomment %}
-    {% block content %}{% endblock %}
+    
+    <div class="pb-2 border-bottom">
+        {% block page_header %}{% endblock page_header %}
+      </div>
+            
+      <div>
+        {% block content %}{% endblock content %}
+      </div>
     
 
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>

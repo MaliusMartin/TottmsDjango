@@ -1,0 +1,38 @@
+{% extends "coreApp/base.html" %}
+{% load static%}
+
+{% block page_header%}
+<style>
+    .jumbotron {
+        background-image: url("{% static 'images/Transfers.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        height: 500px;
+       
+    } 
+      
+</style>
+
+{%endblock page_header%}
+{% block content %}
+
+<div class = "jumbotron"> 
+<div class="container p-5 my-5 border text-center">
+    <h1 class="display-4">Welcome to TOTTMS</h1>
+    <p class="lead">
+        Welcome to the TAMISEMI ONLINE TEACHER TRANSFER MANAGEMENT SYSTEM (TOTTMS)! We're thrilled to have you here.
+        TOTTMS is your gateway to a seamless and efficient teacher transfer process.
+        Whether you are an educator looking for a new opportunity or an administrator managing transfers,
+        TOTTMS is designed to simplify and streamline the entire experience for you.
+
+        New to TOTTMS? <a href="/signup" class="text-decoration-none font-weight-bold">Sign up</a> now to join our community.
+        Existing user? <a href="/user/login" class="text-decoration-none font-weight-bold">Log in</a> to your account and
+        explore the possibilities that TOTTMS has to offer.
+
+        Thank you for choosing TOTTMS as your trusted platform for teacher transfers. We wish you a smooth and successful journey!
+    </p>
+</div>
+</div>
+
+{% endblock %}
+

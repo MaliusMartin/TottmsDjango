@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'coreApp',
     'userApp',
     'locationApp',
+    'officersApp',
+    'transferApp',
     'django_browser_reload',
     'whitenoise.runserver_nostatic',
     'bootstrap5',
@@ -78,7 +80,7 @@ ROOT_URLCONF = 'tottms.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'userApp', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
