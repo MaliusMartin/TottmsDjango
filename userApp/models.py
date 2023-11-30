@@ -35,6 +35,11 @@ class Gender(models.Model):
     name = models.CharField(max_length=20)
     def __str__(self) -> str:
         return self.name
+    
+class KindOfOfficer(models.Model):
+    name = models.CharField(max_length=20)
+    def __str__(self) -> str:
+        return self.name
 
 #the position model
     

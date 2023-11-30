@@ -5,8 +5,9 @@ from django.urls import reverse_lazy
 # Your other imports...
 
 # Login view
+
 class CustomLoginView(LoginView):
-    template_name = 'login.html'
+    template_name = 'userApp/login.html'
     # redirect_authenticated_user = True
     
 
