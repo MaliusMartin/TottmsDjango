@@ -101,8 +101,9 @@ class CustomUser(AbstractUser):
 
         super(CustomUser, self).save(*args, **kwargs)
 
-    def __str__(self):
-        return self.sname
+def __str__(self):
+    return f"{self.lname} - {self.fname} {self.username}"
+
     
     pass
 
@@ -121,6 +122,7 @@ class Teacher(models.Model):
 
 class EducationOfficer(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    type = models.ForeignKey(KindOfOfficer, on_delete=models.CASCADE,null=True)
     region = models.ForeignKey(Region, on_delete=models.CASCADE, null=True)
     district = models.ForeignKey(District, on_delete=models.CASCADE, null=True)
     # Add education officer-specific fields here

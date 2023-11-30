@@ -1,0 +1,28 @@
+<!-- userApp/templates/userApp/signup.html -->
+{% extends "coreApp/base.html" %}
+{% block page_header%}
+<style>
+    .bgsignup {
+        {% comment %} background-image: url("{% static 'images/Transfers.jpg' %}"); {% endcomment %}
+        background-color: #fff;
+        background-size: cover;
+        background-position: center;
+        height: 500px;  
+    } 
+      
+</style>
+
+{%endblock page_header%}
+
+{% block content %}
+<div class = "bgsignup">
+<div class="container p-5 my-5 border">
+    <h1>Signup to TOTTMS</h1>
+    <form method="post" class="mt-3">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</div>
+{% endblock %}
