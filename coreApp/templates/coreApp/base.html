@@ -1,5 +1,11 @@
 {% load static %}
 {% load django_browser_reload %}
+{# Load the tag library #}
+{% load bootstrap4 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
 <!Doctype html>
 <html lang="en">
 <head>
@@ -14,13 +20,14 @@
     <style>
         .body{
             {% comment %} background-image: url("{% static 'images/Transfers.jpg' %}"); {% endcomment %}
-            background-color: #A2F67A;
+            background-color: #066498;
             font family: "Times New Roman";
         }
 
     </style>
 </head>
 <body class='body'>
+    {% include 'coreApp/navbar.html'%}
     
     <div class="pb-2 border-bottom">
         {% block page_header %}{% endblock page_header %}

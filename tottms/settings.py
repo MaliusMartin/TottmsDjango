@@ -39,11 +39,11 @@ INSTALLED_APPS = [
     'coreApp',
     'userApp',
     'locationApp',
+    'bootstrap4',
     'officersApp',
     'transferApp',
     'django_browser_reload',
     'whitenoise.runserver_nostatic',
-    'bootstrap5',
     
     #Genuine apps
     'django.contrib.admin',
@@ -96,17 +96,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'tottms.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-# pymysql.install_as_MySQLdb()
-
 pymysql.install_as_MySQLdb()
 DATABASES = {
     'default': {
@@ -125,7 +114,9 @@ DATABASES = {
 
 # ...
 
-
+#REDIRECT URLS
+LOGIN_URL = '/user/login/'
+LOGIN_REDIRECT_URL = '/user/profile/'
 
 
 # Password validation

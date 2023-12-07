@@ -19,9 +19,11 @@
 from django.urls import path
 from .views import CustomLoginView, CustomPasswordResetView, CustomPasswordResetDoneView, CustomPasswordResetConfirmView, CustomPasswordResetCompleteView
 from .views import CustomSignupView, CustomPasswordResetConfirmView
+from .views import profile_view
 
 urlpatterns = [
     path('login/', CustomLoginView.as_view(), name='login'),
+    path('profile/', profile_view, name='user_profile'),
     path('password_reset/', CustomPasswordResetView.as_view(), name='password_reset'),
     path('password_reset/done/', CustomPasswordResetDoneView.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', CustomPasswordResetConfirmView.as_view(), name='password_reset_confirm'),

@@ -1,0 +1,21 @@
+<!-- userApp/templates/userApp/profile.html -->
+
+{% extends "coreApp/base.html" %}
+
+{% block content %}
+  <div class="container p-5 my-5 border">
+    <h1>Welcome to your profile, {{ user.username }}!</h1>
+
+    {% if is_teacher %}
+      <p>You are a teacher. Additional teacher information goes here.</p>
+    {% elif is_education_officer %}
+      <p>You are an Education officer. Additional officer information goes here.</p>
+    {% elif is_district_officer %}
+      <p>You are a District officer. Additional officer information goes here.</p>
+    {% elif is_tamisemi %}
+      <p>You are a Tamisemi user. Additional Tamisemi information goes here.</p>
+    {% elif is_utumishi %}
+      <p>You are an Utumishi user. Additional Utumishi information goes here.</p>
+    {% endif %}
+  </div>
+{% endblock %}

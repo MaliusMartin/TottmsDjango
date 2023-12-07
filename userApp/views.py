@@ -9,16 +9,68 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import SetPasswordForm
 from django.contrib.auth.views import PasswordContextMixin
 from django.views.generic.edit import FormView
-
+from django.contrib.auth.views import LoginView
 from .forms import SignupForm
-# Your other imports...
+# from django.contrib.auth.decorators import login_required
 
-# Login view
+
 
 class CustomLoginView(LoginView):
     template_name = 'userApp/login.html'
     # redirect_authenticated_user = True
-    
+
+    def form_valid(self, form):
+        # Call the parent class's form_valid method to perform the default login actions
+        response = super().form_valid(form)
+
+        # Customize the redirection based on the user's group
+        user = self.request.user
+        if user.is_authenticated:
+            if user.groups.filter(name='Teachers').exists():
+                # Redirect teachers to the teacher profile URL
+                return redirect('user_profile')
+            elif user.groups.filter(name='Educationofficers').exists():
+                # Redirect Education officers to the Education officer profile URL
+                return redirect('user_profile')
+            elif user.groups.filter(name='Districtofficers').exists():
+                # Redirect District officers to the District officer profile URL
+                return redirect('user_profile')
+            elif user.groups.filter(name='Tamisemi').exists():
+                # Redirect Tamisemi users to the Tamisemi profile URL
+                return redirect('tamisemi_profile')
+            elif user.groups.filter(name='Utumishi').exists():
+                # Redirect Utumishi users to the Utumishi profile URL
+                return redirect('user_profile')
+            else:
+                # Redirect to the default profile URL
+                return redirect('user_profile')
+
+        return response
+
+ 
+# views.py
+
+
+
+# @login_required
+def profile_view(request):
+    user = request.user
+    is_teacher = user.groups.filter(name='Teachers').exists()
+    is_education_officer = user.groups.filter(name='Educationofficers').exists()
+    is_district_officer = user.groups.filter(name='Districtofficers').exists()
+    is_tamisemi = user.groups.filter(name='Tamisemi').exists()
+    is_utumishi = user.groups.filter(name='Utumishi').exists()
+
+    context = {
+        'user': user,
+        'is_teacher': is_teacher,
+        'is_education_officer': is_education_officer,
+        'is_district_officer': is_district_officer,
+        'is_tamisemi': is_tamisemi,
+        'is_utumishi': is_utumishi,
+    }
+
+    return render(request, 'userApp/profile.html', context)
 
 # Password reset views
 class CustomPasswordResetView(PasswordResetView):
