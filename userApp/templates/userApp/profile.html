@@ -2,6 +2,12 @@
 
 {% extends "coreApp/base.html" %}
 
+
+
+{% block page_header%}
+{% include 'coreApp/navbar.html'%}
+{%endblock page_header%}
+
 {% block content %}
   <div class="container p-5 my-5 border">
     <h1>Welcome to your profile, {{ user.username }}!</h1>

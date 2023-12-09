@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'transferApp',
     'django_browser_reload',
     'whitenoise.runserver_nostatic',
+    'django_bootstrap_icons',
     
     #Genuine apps
     'django.contrib.admin',
