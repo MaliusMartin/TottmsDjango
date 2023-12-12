@@ -5,6 +5,12 @@ from django.utils import timezone
 from django.core.validators import MaxLengthValidator, MinLengthValidator
 from locationApp.models import SchoolLevel, Region, District, School
 
+class Course(models.Model):
+    name = models.CharField(max_length=100)
+    coursecode=models.IntegerField( unique=True,null=True)
+    def __str__(self):
+        return self.name
+
 class Subject(models.Model):
     name = models.CharField(max_length=100)
     subjectcode=models.IntegerField( unique=True,null=True)
@@ -110,6 +116,7 @@ def __str__(self):
 class Teacher(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     education_level = models.ForeignKey(EducationLevel, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
     grade = models.ForeignKey(WorkerGrade, on_delete=models.CASCADE, null=True)
     subjects_taught = models.ForeignKey(Subject, on_delete=models.CASCADE, null=True)
     region = models.ForeignKey(Region, on_delete=models.CASCADE, null=True)
