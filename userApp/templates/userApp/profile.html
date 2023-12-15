@@ -5,11 +5,21 @@
 {% load bootstrap_icons %}
 {% block content %}
 <div class="container p-5 my-5 border bg-white">
-    <h1>Welcome to your profile</h1>
-    <p> {% bs_icon 'person-bounding-box' size='2.5em' color='#066498'%} {{ user.username }}</p> 
+              <div class = 'row'>
+                  <div class = 'col-md-4'>
+                       <img src="{{ user.teacherprofile.image.url }}" alt="Profile Picture" class="rounded-circle" width="150" height="150">
+                       {% comment %} <p> {% bs_icon 'person-bounding-box' size='2.5em' color='#066498'%} </p>  {% endcomment %}
+                  </div>
+                  <div class = 'col-md-6'>
+                       <h2>Welcome to your profile {{ user.username }}</h2>
+                    
+                  </div>
+                
+              </div>
+    {% comment %} <img src="{{ user.teacherprofile.image.url }}" alt="Profile Picture" class="rounded-circle" width="150" height="150"> {% endcomment %}
         <div class="container p-5 my-5 border">
-          {% comment %} <h1>Welcome to your profile, {{ profile_view.user.username }}!</h1> {% endcomment %}
-            <div class="row">
+
+            <div class="row">          
                     <div class="col-md-4">  
                           <h2>Personal Information</h2>
                           <p>{% bs_icon 'person-check'%}First Name: {{  profile_view.user.first_name }}</p>

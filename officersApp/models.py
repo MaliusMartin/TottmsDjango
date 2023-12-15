@@ -1,6 +1,6 @@
 # education_officers/models.py
 from django.db import models
-from userApp.models import EducationOfficer, DistrictExecutiveDirector
+from userApp.models import EducationOfficer, DistrictExecutiveDirector,CustomUser, Teacher
 from transferApp.models import TransferApplication, TransferVerification, TransferSubmission
 from locationApp.models import Region, District
 
@@ -44,3 +44,6 @@ class DEDEducationOfficerTransfer(models.Model):
     transfer_date = models.DateTimeField(auto_now_add=True)
     is_transferred = models.BooleanField(default=False)
 
+class SomeModel(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    teacher = models.OneToOneField(Teacher, on_delete=models.CASCADE)

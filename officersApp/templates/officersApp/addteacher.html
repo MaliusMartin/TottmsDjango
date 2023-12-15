@@ -1,0 +1,13 @@
+{% extends 'coreApp/base.html' %}
+
+{% block content %}
+
+<div class="container p-5 my-5 border  bg-white">
+    <h2>Add New Teacher</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}

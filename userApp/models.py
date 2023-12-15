@@ -85,27 +85,25 @@ class CustomUser(AbstractUser):
     is_tamisemi = models.BooleanField(default=False)
     is_utumishi = models.BooleanField(default=False)
     password = models.CharField(max_length=180, null=True, blank=True)  # You should hash and salt passwords
-    def save(self, *args, **kwargs):
-        if self.password and not self.password.startswith('bcrypt_sha256$'):
-            self.password = make_password(self.password)
-        super().save(*args, **kwargs)
     created_at = models.DateTimeField(auto_now_add=True)
     retirement = models.DateTimeField(null=True)
     updated_at = models.DateTimeField(auto_now=True)
     groups = models.ManyToManyField(Group, related_name='custom_user_groups')
     user_permissions = models.ManyToManyField(Permission, related_name='custom_user_permissions')
     
-    
     def save(self, *args, **kwargs):
+        if self.password and not self.password.startswith('bcrypt_sha256$'):
+           self.password = make_password(self.password)
+
         if self.birthdate and self.created_at:
-            # Calculate the expected retirement date
             years_of_service = (self.created_at - self.birthdate).days / 365
-            retirement_age = 60  
+            retirement_age = 60
             retirement_date = self.birthdate + timezone.timedelta(days=int((retirement_age - years_of_service) * 365))
-        
             self.retirement = retirement_date
 
-        super(CustomUser, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
+    
+   
 
 def __str__(self):
     return f"{self.lname} - {self.fname} {self.username}"
