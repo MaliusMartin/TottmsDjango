@@ -48,7 +48,7 @@
     <div class="offcanvas-body">
         <div class="container">
             <div class="row">
-              <div class="col" type="button">
+              <div class="col" data-toggle="modal" data-target="#application" type="button">
                 Start Application
               </div>
               <div class="col" type="button">
@@ -60,19 +60,6 @@
             </div>
           </div>
     </div>
-
-            {% comment %} <div class="offcanvas-body">
-            
-                <a href="{% url 'officersApp:add_teacher' %}" class="nav-link">Add Teacher</a>
-
-                <p>Transfer History</p>
-                <p>FQA</p>
-                <p>About TOTTMS</p>
-                <button class="btn btn-secondary" type="button">A Button</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                    User Manual
-                </button>
-            </div> {% endcomment %}
 
             <div class="offcanvas-body">
                 <div class="container">
@@ -101,6 +88,22 @@
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                             {% include 'coreApp/manual.html'%}
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal" id="application">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Start Application</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                            {% include 'transferApp/transferApplication.html'%}
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>

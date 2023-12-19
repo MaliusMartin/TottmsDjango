@@ -1,0 +1,79 @@
+
+{% extends "coreApp/base.html" %}
+
+{% block page_header %}
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+{% endblock page_header %}
+
+  
+<script>
+    $(document).ready(function () {
+        // Fetch districts based on the selected region for district_from
+        $('#id_region_from').change(function () {
+            var selectedRegion = $(this).val();
+            fetchDistricts(selectedRegion, 'id_district_from');
+        });
+    
+        // Fetch districts based on the selected region for district_to
+        $('#id_region_to').change(function () {
+            var selectedRegion = $(this).val();
+            fetchDistricts(selectedRegion, 'id_district_to');
+        });
+    
+        // Function to fetch districts based on the selected region
+        function fetchDistricts(regionId, districtFieldId) {
+            // Use AJAX request to fetch districts
+            $.ajax({
+                url: '/get-districts/',
+                data: { region_id: regionId },
+                success: function (data) {
+                    // Clear existing options
+                    $('#' + districtFieldId).empty();
+                    
+                    // Add "Select All" option if needed
+                    // ...
+    
+                    // Add fetched districts as options
+                    $.each(data.districts, function (key, value) {
+                        $('#' + districtFieldId).append($('<option></option>').attr('value', key).text(value));
+                    });
+                },
+                error: function (xhr, status, error) {
+                    // Handle error
+                    console.error(xhr, status, error);
+                }
+            });
+        }
+    });
+</script> 
+{% block content %}
+
+    <div class="container p-5 my-2 border bg-white d-flex justify-content-center align-items-center" style="max-width: 40rem;">
+        <div>
+            <h2>Teacher Application</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+        {% comment %} <form method="post" enctype="multipart/form-data" id="application-form">
+            {% csrf_token %}
+            {{ form.region_from }}
+            {{ form.district_from }}
+            {{ form.region_to }}
+            {{ form.district_to }}
+            {{ form.reason }}
+            {{ form.supporting_document }}
+            <button type="submit">Submit Application</button>
+        </form> {% endcomment %}
+        
+    
+    
+    
+    
+
+{% endblock %}

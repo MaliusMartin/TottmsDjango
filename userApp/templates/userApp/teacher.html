@@ -1,0 +1,41 @@
+{% load bootstrap_icons %}
+<div class="row">
+    <div class="col-md-4">  
+          <div class="card-header text-center bg-dark text-white">
+            <h2>Personal Information</h2>
+          </div>
+          <p>{% bs_icon 'person-check'%}First Name: {{  profile_view.user.first_name }}</p>
+          <p>{% bs_icon 'person-check'%}Middle Name: {{ profile_view.user.middle_name }}</p>
+          <p>{% bs_icon 'person-check'%}Last Name: {{ profile_view.user.last_name }}</p>
+          <p>{% bs_icon 'gender-ambiguous'%}Gender: {{ profile_view.user.teacherprofile.gender }}</p>
+          <p>{% bs_icon 'envelope-at'%}Email: {{ profile_view.user.email }}</p>
+          <p>{% bs_icon 'phone'%} Phone: {{ profile_view.user.teacherprofile.phone }}</p>
+          <p>{% bs_icon 'cake2'%} Birthdate: {{ profile_view.user.teacherprofile.birthdate }}</p>
+          <p>{% bs_icon 'person-vcard'%}NIN: {{ profile_view.user.teacherprofile.nin }}</p>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card-header text-center bg-dark text-white">
+            <h2>Education Information</h2>
+      </div>
+      <p>{% bs_icon 'mortarboard'%} Education level:</p>
+      <p>{% bs_icon 'book'%} Course:</p>
+      <p>{% bs_icon 'pencil'%} Subject:</p>
+      <p>{% bs_icon 'stack'%} Specialization:</p>
+    </div>
+
+    <div class="col-md-4">
+          <div class="card-header text-center bg-dark text-white">
+                  <h2>Work <br>Information</h2>
+          </div>
+          <p>{% bs_icon 'at'%}Position: {{ profile_view.check_number }}</p>
+          <p>{% bs_icon 'at'%}Grade: {{ profile_view.check_number }}</p>
+          <p>{% bs_icon 'key'%}Check Number: {{ profile_view.check_number }}</p>
+          <p>{% bs_icon 'calendar'%}Start Date: {{ profile_view.start_date }}</p>
+          <p>{% bs_icon 'calendar3-range'%}Retire Date: {{ profile_view.expected_retire_date }}</p>
+          <p>{% bs_icon 'calendar3-range'%}Salary Scale: {{ profile_view.expected_retire_date }}</p>
+          <p>{% bs_icon 'globe-europe-africa'%}Region: {{ profile_view.region }}</p>
+          <p>{% bs_icon 'globe-europe-africa'%}District: {{ profile_view.district }}</p>
+          <p>{% bs_icon 'geo'%}School: {{ profile_view.working_school }}</p>
+    </div>
+</div>

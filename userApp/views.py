@@ -11,6 +11,7 @@ from django.contrib.auth.views import PasswordContextMixin
 from django.views.generic.edit import FormView
 from django.contrib.auth.views import LoginView
 from .forms import SignupForm
+from datetime import datetime
 # from django.contrib.auth.decorators import login_required
 
 
@@ -60,8 +61,19 @@ def profile_view(request):
     is_district_officer = user.groups.filter(name='Districtofficers').exists()
     is_tamisemi = user.groups.filter(name='Tamisemi').exists()
     is_utumishi = user.groups.filter(name='Utumishi').exists()
+    
+    current_time = datetime.now().time()
+
+    # Determine the time of day
+    if current_time.hour < 12:
+        greeting = "Good morning"
+    elif 12 <= current_time.hour < 18:
+        greeting = "Good afternoon"
+    else:
+        greeting = "Good evening"
 
     context = {
+        'greeting': f'{greeting}, {request.user.username}',
         'user': user,
         'is_teacher': is_teacher,
         'is_education_officer': is_education_officer,

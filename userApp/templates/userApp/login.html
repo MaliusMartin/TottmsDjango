@@ -11,8 +11,8 @@
 
 {% block content %}
 
-<div class="container p-5 my-5 border">
-    <div class="row justify-content-center">
+
+    <div class="container p-5 my-2 border bg-white d-flex justify-content-center align-items-center" style="max-width: 40rem;">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header text-center bg-dark text-white">
@@ -22,7 +22,11 @@
                     <form method="post">
                         {% csrf_token %}
                         {{ form }}
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <br></br>
+                        <div class=" d-flex justify-content-center align-items-center">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                        
                         <div class="mb-3">
                             <span class="text-muted">Don't have an account? </span>
                             <a href="/user/signup" class="text-decoration-none">Sign up</a> |
@@ -34,7 +38,7 @@
             </div>
         </div>
     </div>
-</div>
+
 
 {% endblock %}
 

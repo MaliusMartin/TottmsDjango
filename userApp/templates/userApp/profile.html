@@ -8,97 +8,29 @@
               <div class = 'row'>
                   <div class = 'col-md-4'>
                        <img src="{{ user.teacherprofile.image.url }}" alt="Profile Picture" class="rounded-circle" width="150" height="150">
-                       {% comment %} <p> {% bs_icon 'person-bounding-box' size='2.5em' color='#066498'%} </p>  {% endcomment %}
+                       
                   </div>
-                  <div class = 'col-md-6'>
+                  <div class = 'col-md-6' >
                        <h2>Welcome to your profile {{ user.username }}</h2>
+                       <p>{{ greeting }}</p>
                     
                   </div>
                 
               </div>
-    {% comment %} <img src="{{ user.teacherprofile.image.url }}" alt="Profile Picture" class="rounded-circle" width="150" height="150"> {% endcomment %}
-        <div class="container p-5 my-5 border">
-
-            <div class="row">          
-                    <div class="col-md-4">  
-                          <h2>Personal Information</h2>
-                          <p>{% bs_icon 'person-check'%}First Name: {{  profile_view.user.first_name }}</p>
-                          <p>{% bs_icon 'person-check'%}Middle Name: {{ profile_view.user.middle_name }}</p>
-                          <p>{% bs_icon 'person-check'%}Last Name: {{ profile_view.user.last_name }}</p>
-                          <p>{% bs_icon 'gender-ambiguous'%}Gender: {{ profile_view.user.teacherprofile.gender }}</p>
-                          <p>{% bs_icon 'envelope-at'%}Email: {{ profile_view.user.email }}</p>
-                          <p>{% bs_icon 'phone'%} Phone: {{ profile_view.user.teacherprofile.phone }}</p>
-                          <p>{% bs_icon 'cake2'%} Birthdate: {{ profile_view.user.teacherprofile.birthdate }}</p>
-                          <p>{% bs_icon 'person-vcard'%}NIN: {{ profile_view.user.teacherprofile.nin }}</p>
-                    </div>
-            
-                    <div class="col-md-4">
-                      <h2>Education Information</h2>
-                      <p>{% bs_icon 'mortarboard'%} Education level:</p>
-                      <p>{% bs_icon 'book'%} Course:</p>
-                      <p>{% bs_icon 'pencil'%} Subject:</p>
-                      <p>{% bs_icon 'stack'%} Specialization:</p>
-                    </div>
-            
-                    <div class="col-md-4">
-                          <h2>Work Information</h2>
-                          <p>{% bs_icon 'at'%}Position: {{ profile_view.check_number }}</p>
-                          <p>{% bs_icon 'braces'%}Type: {{ profile_view.type }}</p>
-                          <p>{% bs_icon 'key'%}Check Number: {{ profile_view.check_number }}</p>
-                          <p>{% bs_icon 'calendar'%}Start Date: {{ profile_view.start_date }}</p>
-                          <p>{% bs_icon 'calendar3-range'%}Retire Date: {{ profile_view.retirement }}</p>
-                          <p>{% bs_icon 'calendar3-range'%}Salary Scale: {{ profile_view.expected_retire_date }}</p>
-                          <p>{% bs_icon 'globe-europe-africa'%}Region: {{ profile_view.region }}</p>
-                          <p>{% bs_icon 'globe-europe-africa'%}District: {{ profile_view.district }}</p>
-                          
-                    </div>
-    
-        </div>
-  
+   
+        
+    {% include 'userApp/teacher.html'%}
 
     {% if is_teacher %}
-    <div class="row">
-          <div class="col-md-4">  
-                <h2>Personal Information</h2>
-                <p>{% bs_icon 'person-check'%}First Name: {{  profile_view.user.first_name }}</p>
-                <p>{% bs_icon 'person-check'%}Middle Name: {{ profile_view.user.middle_name }}</p>
-                <p>{% bs_icon 'person-check'%}Last Name: {{ profile_view.user.last_name }}</p>
-                <p>{% bs_icon 'gender-ambiguous'%}Gender: {{ profile_view.user.teacherprofile.gender }}</p>
-                <p>{% bs_icon 'envelope-at'%}Email: {{ profile_view.user.email }}</p>
-                <p>{% bs_icon 'phone'%} Phone: {{ profile_view.user.teacherprofile.phone }}</p>
-                <p>{% bs_icon 'cake2'%} Birthdate: {{ profile_view.user.teacherprofile.birthdate }}</p>
-                <p>{% bs_icon 'person-vcard'%}NIN: {{ profile_view.user.teacherprofile.nin }}</p>
-          </div>
-      
-          <div class="col-md-4">
-            <h2>Education Information</h2>
-            <p>{% bs_icon 'mortarboard'%} Education level:</p>
-            <p>{% bs_icon 'book'%} Course:</p>
-            <p>{% bs_icon 'pencil'%} Subject:</p>
-            <p>{% bs_icon 'stack'%} Specialization:</p>
-          </div>
-      
-          <div class="col-md-4">
-                <h2>Work Information</h2>
-                <p>{% bs_icon 'at'%}Position: {{ profile_view.check_number }}</p>
-                <p>{% bs_icon 'at'%}Grade: {{ profile_view.check_number }}</p>
-                <p>{% bs_icon 'key'%}Check Number: {{ profile_view.check_number }}</p>
-                <p>{% bs_icon 'calendar'%}Start Date: {{ profile_view.start_date }}</p>
-                <p>{% bs_icon 'calendar3-range'%}Retire Date: {{ profile_view.expected_retire_date }}</p>
-                <p>{% bs_icon 'calendar3-range'%}Salary Scale: {{ profile_view.expected_retire_date }}</p>
-                <p>{% bs_icon 'globe-europe-africa'%}Region: {{ profile_view.region }}</p>
-                <p>{% bs_icon 'globe-europe-africa'%}District: {{ profile_view.district }}</p>
-                <p>{% bs_icon 'geo'%}School: {{ profile_view.working_school }}</p>
-          </div>
-     </div>
+         {% include 'userApp/teacher.html'%}
     {% elif is_education_officer %}
-      <p>You are an Education officer. Additional officer information goes here.</p>
+         {% include 'userApp/officer.html'%}
     {% elif is_district_officer %}
-      <p>You are a District officer. Additional officer information goes here.</p>
+         {% include 'userApp/ded.html'%}
     {% elif is_tamisemi %}
-      <p>You are a Tamisemi user. Additional Tamisemi information goes here.</p>
+         {% include 'userApp/tamisemi.html'%}
     {% elif is_utumishi %}
-      <p>You are an Utumishi user. Additional Utumishi information goes here.</p>
+         {% include 'userApp/utumishi.html'%}
     {% endif %}
 </div>
 {% endblock %}
