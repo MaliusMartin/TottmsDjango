@@ -1,0 +1,94 @@
+<!-- schools.html -->
+
+
+<!-- schools.html -->
+
+{% extends "coreApp/base.html" %}
+{% load static %}
+
+{% block page_header %}
+<style>
+</style>
+{% endblock page_header %}
+
+{% block content %}
+<body>
+    <div class="container justify-content-center align-items-center bg-white">
+        <h1>School List</h1>
+
+        <!-- Dropdown for selecting school levels -->
+        <form method="get" action="{% url 'locationApp:schools' %}">
+            <label for="school_level">Filter by School Level</label>
+            <select name="school_level" id="school_level">
+                <option value="">All</option>
+                {% for level in all_school_levels %}
+                    <option value="{{ level.levelName }}" {% if selected_school_level == level.levelName %}selected{% endif %}>{{ level.levelName }}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-dark type=button" type="submit">Filter</button>
+        </form>
+
+        <div class="container mt-3 bg-white ">
+            <div>
+            <p>Total Schools: {{ total_schools_count }}</p> 
+          
+            {% comment %} <p>Primary Schools: {{ primary_schools_count }}</p>
+            
+            <p>Secondary Schools: {{ secondary_schools_count }}</p> {% endcomment %}
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>S/N</th>
+                        <th>Registration</th>
+                        <th>School Name</th>
+                        <th>School Level</th>
+                        <th>District</th>
+                        <th>Region</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for school in schools %}
+                        <tr>
+                            <td>{{ school.id }}</td>
+                            <td>S{{ school.registration }}</td>
+                            <td>{{ school.name }}</td>
+                            <td>{{ school.School_level.levelName }}</td>
+                            <td>{{ school.district.name }}</td>
+                            <td>{{ school.region.name }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination links -->
+        <div class="pagination">
+            <span class="step-links">
+                {% if schools.has_previous %}
+                <div class="btn-group">
+                    <a class="btn btn-dark type=button"  href="?page=1">&laquo; first</a>
+                    <a class="btn btn-dark type=button"  href="?page={{ schools.previous_page_number }}">previous</a>
+                 </div>
+                {% endif %}
+
+                <span  class=" current btn btn-dark type=button">
+                    Page {{ schools.number }} of {{ schools.paginator.num_pages }}
+                </span>
+
+                {% if schools.has_next %}
+                <div class="btn-group">
+                    <a class="btn btn-dark type=button" href="?page={{ schools.next_page_number }}">next</a>
+                    <a class="btn btn-dark type=button"  href="?page={{ schools.paginator.num_pages }}">last &raquo;</a>
+                 </div>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+</body>
+{% endblock %}
+
+
+
+
+

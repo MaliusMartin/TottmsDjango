@@ -25,6 +25,7 @@ urlpatterns = [
     path('user/', include('userApp.urls')),
     path('officer/', include('officersApp.urls')),
     path('transfer/', include('transferApp.urls')),
+    path('location/', include('locationApp.urls')),
     
     path("__reload__/", include("django_browser_reload.urls")),
 ]

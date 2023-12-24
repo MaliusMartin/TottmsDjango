@@ -125,6 +125,11 @@ class Teacher(models.Model):
         return f"{self.user},{self.school_level},{self.region} {self.district}"
     # Add teacher-specific fields here
 
+class Supervisor(models.Model):
+    headofschool = models.ForeignKey(Teacher, on_delete = models.CASCADE, null=True, blank=True)
+     
+    
+
 class EducationOfficer(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     type = models.ForeignKey(KindOfOfficer, on_delete=models.CASCADE,null=True)
