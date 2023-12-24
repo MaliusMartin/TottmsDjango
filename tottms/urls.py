@@ -22,7 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     
     path('', include('coreApp.urls')),
-    path('user/', include('userApp.urls')),
+    path('user/', include(('userApp.urls', 'userApp'), namespace='userApp')),
     path('officer/', include('officersApp.urls')),
     path('transfer/', include('transferApp.urls')),
     path('location/', include('locationApp.urls')),

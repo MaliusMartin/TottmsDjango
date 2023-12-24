@@ -26,7 +26,7 @@ class District(models.Model):
 
 # the School model
 class School(models.Model):
-    registration = models.IntegerField(max_length = 10, default = 1000, null=True, blank=True)
+    registration = models.IntegerField( default = 1000, null=True, blank=True)
     name = models.CharField(max_length=200)
     district = models.ForeignKey(District, on_delete=models.CASCADE)
     region = models.ForeignKey(Region, on_delete=models.CASCADE)

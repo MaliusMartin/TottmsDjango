@@ -1,14 +1,12 @@
-{% extends "coreApp/base.html" %}
+ {% extends "coreApp/base.html" %} 
 
 
 
 
-{% block page_header %}
+ {% block page_header %}
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-
-
 {% endblock page_header %}
+
 {% load bootstrap_icons %}
   
 <script>
@@ -64,20 +62,7 @@
         </div>
     </div>
 
-        {% comment %} <form method="post" enctype="multipart/form-data" id="application-form">
-            {% csrf_token %}
-            {{ form.region_from }}
-            {{ form.district_from }}
-            {{ form.region_to }}
-            {{ form.district_to }}
-            {{ form.reason }}
-            {{ form.supporting_document }}
-            <button type="submit">Submit Application</button>
-        </form> {% endcomment %}
-        
-    
-    
-    
+      
     
 
 {% endblock %}

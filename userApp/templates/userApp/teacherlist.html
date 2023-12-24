@@ -1,0 +1,99 @@
+{% extends "coreApp/base.html" %}
+{% load static %}
+
+{% block page_header %}
+<style>
+/* Add any custom styles if needed */
+</style>
+{% endblock page_header %}
+
+{% block content %}
+<body>
+    <div class="container bg-white">
+        <h1 class="text-center">Teachers List</h1>
+
+        <!-- Dropdown for selecting school levels -->
+        <form method="get" action="{% url 'userApp:teachers' %}" class="mb-3">
+            <label for="school_level" class="form-label">Filter by School Level</label>
+            <select name="school_level" id="school_level" class="form-select">
+                <option value="">All</option>
+                {% for level in all_school_levels %}
+                    <option value="{{ level.levelName }}" {% if selected_school_level == level.levelName %}selected{% endif %}>{{ level.levelName }}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-dark" type="submit">Filter</button>
+        </form>
+
+        <div class="container mt-3">
+            <div class="mb-3">
+                <p>Total Teachers: {{ total_teachers_count }}</p>
+                <p>Primary Teachers: {{ primary_teachers_count }}</p>
+                <p>Secondary Teachers: {{ secondary_teachers_count }}</p>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>Name</th>
+                            <th>CheckNo</th>
+                            <th>Education</th>
+                            <th>Course</th>
+                            <th>Subjects</th>
+                            <th>Region</th>
+                            <th>District</th>
+                            <th>School</th>
+                            <th>Level</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for teacher in teachers %}
+                            <tr>
+                                <td>{{ teacher.id }}</td>
+                                <td>{{ teacher.user.fname }} {{ teacher.user.lname }}</td>
+                                <td>{{ teacher.user.username }}</td>
+                                <td>{{ teacher.education_level }}</td>
+                                <td>{{ teacher.course }}</td>
+                                <td>
+                                    {% for subject in teacher.subjects_taught.all %}
+                                        {{ subject.name }}
+                                        {% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td>{{ teacher.region.name }}</td>
+                                <td>{{ teacher.district.name }}</td>
+                                <td>{{ teacher.school.name }}</td>
+                                <td>{{ teacher.school_level.levelName }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Pagination links -->
+        <div class="pagination d-flex justify-content-center mt-3">
+            <span class="step-links">
+                {% if teachers.has_previous %}
+                <div class="btn-group">
+                    <a class="btn btn-dark type=button"  href="?page=1">&laquo; first</a>
+                    <a class="btn btn-dark type=button"  href="?page={{ teachers.previous_page_number }}">previous</a>
+                 </div>
+                {% endif %}
+
+                <span  class=" current btn btn-dark type=button">
+                    Page {{ teachers.number }} of {{ teachers.paginator.num_pages }}
+                </span>
+
+                {% if teachers.has_next %}
+                <div class="btn-group">
+                    <a class="btn btn-dark type=button" href="?page={{ teachers.next_page_number }}">next</a>
+                    <a class="btn btn-dark type=button"  href="?page={{ teachers.paginator.num_pages }}">last &raquo;</a>
+                 </div>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+</body>
+{% endblock %}
+

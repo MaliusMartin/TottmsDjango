@@ -116,7 +116,7 @@ class Teacher(models.Model):
     education_level = models.ForeignKey(EducationLevel, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
     grade = models.ForeignKey(WorkerGrade, on_delete=models.CASCADE, null=True)
-    subjects_taught = models.ForeignKey(Subject, on_delete=models.CASCADE, null=True)
+    subjects_taught = models.ManyToManyField(Subject, blank=True)
     region = models.ForeignKey(Region, on_delete=models.CASCADE, null=True)
     district = models.ForeignKey(District, on_delete=models.CASCADE, null=True)
     school_level = models.ForeignKey(SchoolLevel, on_delete=models.CASCADE)

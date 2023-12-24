@@ -12,8 +12,10 @@ from django.views.generic.edit import FormView
 from django.contrib.auth.views import LoginView
 from .forms import SignupForm
 from datetime import datetime
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # from django.contrib.auth.decorators import login_required
-
+from .models import Teacher,CustomUser
+from locationApp.models import SchoolLevel, School
 
 
 class CustomLoginView(LoginView):
@@ -141,7 +143,89 @@ class CustomSignupView(FormView):
 
     def form_invalid(self, form):
         return self.render_to_response(self.get_context_data(form=form))
+    
+    
+    
+    
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render
+from .models import Teacher, SchoolLevel
+
+def Teachers_list(request):
+    # Get the selected school level from the query parameters
+    selected_school_level = request.GET.get('school_level')
+
+    # Get all school levels for dropdown
+    all_school_levels = SchoolLevel.objects.all()
+
+    # Get all teachers or filter by selected school level
+    if selected_school_level:
+        teachers = Teacher.objects.filter(school_level__levelName=selected_school_level)
+    else:
+        teachers = Teacher.objects.all()
+
+    # Count total teachers, primary teachers, and secondary teachers
+    total_teachers_count = Teacher.objects.count()
+    primary_teachers_count = Teacher.objects.filter(school_level__levelName='Primary').count()
+    secondary_teachers_count = Teacher.objects.filter(school_level__levelName='Secondary').count()
+
+    # Pagination
+    page = request.GET.get('page', 1)
+    paginator = Paginator(teachers, 10)  # Show 10 teachers per page
+    try:
+        teachers = paginator.page(page)
+    except PageNotAnInteger:
+       teachers = paginator.page(1)
+    except EmptyPage:
+       teachers = paginator.page(paginator.num_pages)
+
+    return render(request, 'userApp/teacherlist.html', {
+        'teachers': teachers,
+        'all_school_levels': all_school_levels,
+        'selected_school_level': selected_school_level,
+        'total_teachers_count': total_teachers_count,
+        'primary_teachers_count': primary_teachers_count,
+        'secondary_teachers_count': secondary_teachers_count,
+    })
+
 
 
 # Other views...
+
+# def Teachers_list(request):
+#     # Get the selected school level from the query parameters
+#     selected_school_level = request.GET.get('school_level')
+
+#     # Get all school levels for dropdown
+#     all_school_levels = SchoolLevel.objects.all()
+
+#     # Get all schools or filter by selected school level
+#     if selected_school_level:
+#         teachers = Teacher.objects.filter(School_level__levelName=selected_school_level)
+#     else:
+#         teachers = Teacher.objects.all()
+
+#     # Count total Teachers, primary schools, and secondary schools
+#     total_teachers_count = Teacher.objects.count()
+#     primary_teachers_count = Teacher.objects.filter(School_level__levelName='Primary').count()
+#     secondary_teachers_count = Teacher.objects.filter(School_level__levelName='Secondary').count()
+
+#     # Pagination
+#     page = request.GET.get('page', 1)
+#     paginator = Paginator(teachers, 10)  # Show 10 schools per page
+#     try:
+#         teachers = paginator.page(page)
+#     except PageNotAnInteger:
+#        teachers = paginator.page(1)
+#     except EmptyPage:
+#        teachers = paginator.page(paginator.num_pages)
+
+#     return render(request, 'userApp/teacherlist.html', {
+#         'teachers': teachers,
+#         'all_school_levels': all_school_levels,
+#         'selected_school_level': selected_school_level,
+#         'total_schools_count': total_teachers_count,
+#         'primary_schools_count': primary_teachers_count,
+#         'secondary_schools_count': secondary_teachers_count,
+#     })
 

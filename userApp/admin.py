@@ -8,10 +8,21 @@ class CustomUserAdmin(UserAdmin):
     search_fields = ('username', 'email', 'fname', 'lname')
     list_filter = ('is_teacher', 'is_education_officer', 'is_ded', 'is_tamisemi', 'is_utumishi', 'position')
 
+# class TeacherAdmin(admin.ModelAdmin):
+#     list_display = ('user', 'education_level', 'grade', 'subjects_taught', 'region', 'district', 'school_level', 'school','course')
+#     search_fields = ('user__username', 'user__email', 'user__fname', 'user__lname','subjects_taught','course')
+#     list_filter = ('education_level', 'grade', 'region', 'district', 'school_level', 'school','subjects_taught', 'course')
+
 class TeacherAdmin(admin.ModelAdmin):
-    list_display = ('user', 'education_level', 'grade', 'subjects_taught', 'region', 'district', 'school_level', 'school','course')
-    search_fields = ('user__username', 'user__email', 'user__fname', 'user__lname','subjects_taught','course')
-    list_filter = ('education_level', 'grade', 'region', 'district', 'school_level', 'school','subjects_taught', 'course')
+    list_display = ('id', 'user', 'education_level', 'course', 'grade', 'display_subjects', 'region', 'district', 'school_level', 'school')
+    search_fields = ('user__username', 'user__email', 'user__fname', 'user__lname','display_subjects','course')
+    list_filter = ('education_level', 'grade', 'region', 'district', 'school_level', 'school', 'course')
+
+    def display_subjects(self, obj):
+        return ", ".join([subject.name for subject in obj.subjects_taught.all()])
+    
+    display_subjects.short_description = 'Subjects Taught'  # Set a custom column header for the subjects
+
 
 class EducationOfficerAdmin(admin.ModelAdmin):
     list_display = ('user', 'region', 'district')
