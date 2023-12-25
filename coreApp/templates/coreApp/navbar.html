@@ -19,7 +19,7 @@
                 <!-- Right-aligned content -->
                 <li class="nav-item">
                     <a class="nav-link" href="#" data-bs-toggle="offcanvas" data-bs-target="#drawer">
-                        <i class="fas fa-bars"></i> APPLICATIONS
+                        <i class="">{% bs_icon 'grid' size='1.5em' %}</i> 
                     </a>
                 </li>
                 <li class="nav-item">
@@ -27,11 +27,7 @@
                         <i class="fas fa-sign-out-alt"></i>{% bs_icon 'box-arrow-right' size='1.5em' %}
                     </a>
                 </li>
-                <li class="nav-item">
-                     {% comment %} <a class="nav-link" href="{% url 'password_reset' %}">  {% endcomment %}
-                        <i class="fas fa-key"></i>{% bs_icon 'gear-wide-connected' size='1.5em' %}
-                     {% comment %} </a>  {% endcomment %}
-                </li>
+               
             </ul>
         </div>
     </div>
@@ -46,36 +42,105 @@
     
     
     <div class="offcanvas-body">
-        <div class="container">
-            <div class="row">
-              <div class="col" data-toggle="modal" data-target="#application" type="button">
-                Start Application
-              </div>
-              <div class="col" type="button">
-                My Applicationon
-              </div>
-              <div class="col" type="button">
-                All Application
-              </div>
+            <div class="container">
+                <div class="row">
+                        <div class="col" data-toggle="modal" data-target="#application" type="button">
+                            Start Application
+                            <a class="nav-link" >
+                                <i class="#">{% bs_icon 'plus-square' size='1.5em' %}</i>
+                             </a>
+                        </div>
+                        <div class="col" type="button">
+                            My Application
+                            <a class="nav-link" >
+                                <i class="#">{% bs_icon 'menu-up' size='1.5em' %}</i>
+                             </a>
+                        </div>
+                        <div class="col" type="button">
+                            All Application
+                            <a class="nav-link" >
+                                <i class="#">{% bs_icon 'menu-button-wide' size='1.5em' %}</i>
+                             </a>
+                        </div>
+                </div>
             </div>
-          </div>
     </div>
+            <div class="offcanvas-body">
+                <div class="container">
+                    <div class="row">
+                    <div class="col" data-toggle="modal" data-target="#myModal" type='button'>
+                        Notification
+                        <a class="nav-link" >
+                            <i class="#">{% bs_icon 'bell' size='1.5em' %}</i>
+                        </a>
+                    </div>
+                    <div class="col" type="button">
+                        Messages
+                        <a class="nav-link" >
+                            <i class="#">{% bs_icon 'chat-right-dots' size='1.5em' %}</i>
+                        </a>
+                    </div>
+                    <div class="col" type="button">
+                        Reports
+                        <a class="nav-link" >
+                            <i class="#">{% bs_icon 'headset' size='1.5em' %}</i>
+                        </a>
+                    </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="offcanvas-body">
                 <div class="container">
                     <div class="row">
                       <div class="col" data-toggle="modal" data-target="#myModal" type='button'>
                         User Guide
+                        <a class="nav-link" >
+                            <i class="#">{% bs_icon 'book' size='1.5em' %}</i>
+                         </a>
                       </div>
                       <div class="col" type="button">
                         About 
+                        <a class="nav-link" >
+                            <i class="#">{% bs_icon 'arrow-left-right' size='1.5em' %}</i>
+                         </a>
                       </div>
                       <div class="col" type="button">
-                        Contact
+                        forms
+                        <a class="nav-link" >
+                            <i class="fas fa-sign-out-alt"></i>{% bs_icon 'file-pdf' size='1.5em' %}
+                        </a>
                       </div>
                     </div>
                   </div>
             </div>
+
+            <div class="offcanvas-body">
+                <div class="container">
+                    <div class="row">
+                            <div class="col" type="button">
+                                Contact Us
+                                <a class="nav-link">
+                                    <i class="#">{% bs_icon 'headset' size='1.5em' %}</i>
+                                </a>
+                            </div>
+                            <div class="col" data-toggle="modal" data-target="#application" type="button">
+                                Settings
+                                <a class="nav-link">
+                                   <i class="fas fa-key">{% bs_icon 'gear-wide-connected' size='1.5em' %}</i>
+                                </a>
+                               
+                            </div>
+                            <div class="col" type="button">
+                                Logout
+                                <a class="nav-link">
+                                    <i class="fas fa-sign-out-alt"></i>{% bs_icon 'box-arrow-right' size='1.5em' %}
+                                </a>
+                            </div>
+                            
+                    </div>
+                </div>
+        </div>
 </div>
 
 

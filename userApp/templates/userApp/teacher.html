@@ -21,21 +21,22 @@
       <p>{% bs_icon 'mortarboard'%} Education level:</p>
       <p>{% bs_icon 'book'%} Course:</p>
       <p>{% bs_icon 'pencil'%} Subject:</p>
-      <p>{% bs_icon 'stack'%} Specialization:</p>
+      <p>{% bs_icon 'award'%} Specialization:</p>
     </div>
 
     <div class="col-md-4">
           <div class="card-header text-center bg-dark text-white">
                   <h2>Work <br>Information</h2>
           </div>
-          <p>{% bs_icon 'at'%}Position: {{ profile_view.check_number }}</p>
-          <p>{% bs_icon 'at'%}Grade: {{ profile_view.check_number }}</p>
           <p>{% bs_icon 'key'%}Check Number: {{ profile_view.check_number }}</p>
+          <p>{% bs_icon 'patch-check'%}Position: {{ profile_view.check_number }}</p>
+          <p>{% bs_icon '123'%}Rank: {{ profile_view.check_number }}</p>
+          <p>{% bs_icon 'cash-coin'%}Salary Scale: {{ profile_view.expected_retire_date }}</p>
           <p>{% bs_icon 'calendar'%}Start Date: {{ profile_view.start_date }}</p>
           <p>{% bs_icon 'calendar3-range'%}Retire Date: {{ profile_view.expected_retire_date }}</p>
-          <p>{% bs_icon 'calendar3-range'%}Salary Scale: {{ profile_view.expected_retire_date }}</p>
           <p>{% bs_icon 'globe-europe-africa'%}Region: {{ profile_view.region }}</p>
           <p>{% bs_icon 'globe-europe-africa'%}District: {{ profile_view.district }}</p>
           <p>{% bs_icon 'geo'%}School: {{ profile_view.working_school }}</p>
+          <p>{% bs_icon 'code'%}School level: {{ profile_view.working_school }}</p>
     </div>
 </div>
